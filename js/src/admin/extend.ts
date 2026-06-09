@@ -15,6 +15,16 @@ export default [
       options: { bottom: t('settings.position_bottom'), box: t('settings.position_box'), center: t('settings.position_center') },
       default: 'bottom',
     }))
+    .setting(() => ({
+      setting: 'ernestdefoe-acc.theme',
+      type: 'select',
+      label: t('settings.theme'),
+      options: { auto: t('settings.theme_auto'), light: t('settings.theme_light'), dark: t('settings.theme_dark') },
+      default: 'auto',
+    }))
+    .setting(() => ({ setting: 'ernestdefoe-acc.accent_color', type: 'text', label: t('settings.accent_color'), help: t('settings.accent_color_help'), placeholder: '#2563eb' }))
+    .setting(() => ({ setting: 'ernestdefoe-acc.width', type: 'number', label: t('settings.width'), help: t('settings.width_help'), placeholder: '420' }))
+    .setting(() => ({ setting: 'ernestdefoe-acc.radius', type: 'number', label: t('settings.radius'), help: t('settings.radius_help'), placeholder: '12' }))
     .setting(() => ({ setting: 'ernestdefoe-acc.show_reject_all', type: 'boolean', label: t('settings.show_reject_all'), default: true }))
     .setting(() => ({ setting: 'ernestdefoe-acc.respect_dnt', type: 'boolean', label: t('settings.respect_dnt'), help: t('settings.respect_dnt_help'), default: true }))
     .setting(() => ({ setting: 'ernestdefoe-acc.version', type: 'text', label: t('settings.version'), help: t('settings.version_help'), default: '1' }))

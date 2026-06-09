@@ -22,6 +22,10 @@ export interface CookieConsentConfig {
   enabled: boolean;
   version: string;
   position: 'bottom' | 'box' | 'center';
+  theme: 'auto' | 'light' | 'dark';
+  accentColor: string | null;
+  width: number | null;
+  radius: number | null;
   respectDnt: boolean;
   showRejectAll: boolean;
   title: string | null;
@@ -51,6 +55,10 @@ export function config(): CookieConsentConfig {
     enabled: get('enabled', true),
     version: get('version', '1'),
     position: get('position', 'bottom'),
+    theme: get('theme', 'auto'),
+    accentColor: get<string | null>('accentColor', null),
+    width: get<number | null>('width', null),
+    radius: get<number | null>('radius', null),
     respectDnt: get('respectDnt', true),
     showRejectAll: get('showRejectAll', true),
     title: get<string | null>('title', null),

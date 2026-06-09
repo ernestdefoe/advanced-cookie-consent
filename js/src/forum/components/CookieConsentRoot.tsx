@@ -76,7 +76,12 @@ export default class CookieConsentRoot extends Component {
   view() {
     if (!this.cfg || !this.cfg.enabled) return null;
 
-    return m('.CookieConsent', [
+    const style: Record<string, string> = {};
+    if (this.cfg.accentColor) style['--acc-accent'] = this.cfg.accentColor;
+    if (this.cfg.width) style['--acc-width'] = this.cfg.width + 'px';
+    if (this.cfg.radius !== null && this.cfg.radius !== undefined) style['--acc-radius'] = this.cfg.radius + 'px';
+
+    return m('.CookieConsent.CookieConsent--theme-' + this.cfg.theme, { style }, [
       this.bannerVisible && !this.modalOpen
         ? m(CookieBanner, {
             config: this.cfg,

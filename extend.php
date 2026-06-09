@@ -36,6 +36,11 @@ return [
         ->serializeToForum('cookieConsent.enabled', 'ernestdefoe-acc.enabled', $bool(true))
         ->serializeToForum('cookieConsent.version', 'ernestdefoe-acc.version', fn ($v) => (string) ($v ?: '1'))
         ->serializeToForum('cookieConsent.position', 'ernestdefoe-acc.position', fn ($v) => $v ?: 'bottom')
+        // Look & feel — so the banner can be designed to fit any site/size.
+        ->serializeToForum('cookieConsent.theme', 'ernestdefoe-acc.theme', fn ($v) => $v ?: 'auto')
+        ->serializeToForum('cookieConsent.accentColor', 'ernestdefoe-acc.accent_color', fn ($v) => $v ?: null)
+        ->serializeToForum('cookieConsent.width', 'ernestdefoe-acc.width', fn ($v) => (int) ($v ?: 0) ?: null)
+        ->serializeToForum('cookieConsent.radius', 'ernestdefoe-acc.radius', fn ($v) => $v === null || $v === '' ? null : (int) $v)
         ->serializeToForum('cookieConsent.respectDnt', 'ernestdefoe-acc.respect_dnt', $bool(true))
         ->serializeToForum('cookieConsent.showRejectAll', 'ernestdefoe-acc.show_reject_all', $bool(true))
         // Free-text strings: null means "use the translated default" on the client.

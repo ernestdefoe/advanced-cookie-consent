@@ -14,8 +14,19 @@ Shows a clean cookie notice with **Accept / Reject / Customize**, and a granular
 - **Admin-defined categories** (rename, add, remove, mark required) — defaults: Necessary, Performance, Functional, Marketing.
 - **Consent versioning** — bump the version to re-prompt everyone when your policy changes.
 - **Do Not Track / Global Privacy Control** — optionally auto-reject non-essential categories when the browser sends an opt-out signal.
+- **Fully stylable** — layout (bottom bar / corner box / centered), light / dark / auto theme, custom accent colour, box width and corner radius, so it fits any site and screen size.
 - **Reopen anytime** — a "Cookie settings" link, plus a JS API so a theme can place its own trigger.
 - Fully translatable; consent is stored locally (no personal data leaves the browser).
+
+## Screenshots
+
+| Cookie notice | Privacy settings |
+| --- | --- |
+| ![Cookie notice banner](screenshots/banner.png) | ![Privacy settings modal](screenshots/settings.png) |
+
+Fully **stylable** so it fits any forum — choose the layout (bottom bar / corner box / centered), a light/dark/auto theme, your own accent colour, box width and corner radius:
+
+![Styled corner box, dark theme, custom accent](screenshots/styled.png)
 
 ## JavaScript API
 

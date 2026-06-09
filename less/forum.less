@@ -246,3 +246,58 @@
   &-meta { display: flex; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--muted-color); }
   &-cat { font-weight: 600; color: var(--primary-color, #2563eb); }
 }
+
+/* ---- Admin style customization: accent colour, width, radius, theme ---- */
+.CookieConsent {
+  --acc-accent: var(--primary-color, #2563eb);
+}
+
+.CookieConsent .Button--primary {
+  background-color: var(--acc-accent);
+  border-color: var(--acc-accent);
+}
+
+.CookieBanner--box,
+.CookieBanner--center {
+  max-width: var(--acc-width, 420px);
+  border-radius: var(--acc-radius, 12px);
+}
+
+.CookieModal {
+  border-radius: var(--acc-radius, 14px);
+}
+
+// Dark surface set, applied for theme=dark and for theme=auto under an OS dark scheme.
+.acc-dark() {
+  .CookieBanner,
+  .CookieModal {
+    background: #1b1e24;
+    color: #e9ebef;
+    border-color: #2c313a;
+  }
+
+  .CookieBanner-message,
+  .CookieModal-intro,
+  .CookieCategory-desc,
+  .CookieCategory-cookies,
+  .CookieServiceRow-desc,
+  .CookieServiceRow-meta,
+  .CookieModal-close,
+  .CookieModal-tab { color: #9aa3b2; }
+
+  .CookieCategory,
+  .CookieServiceRow { border-color: #2c313a; }
+
+  .CookieModal-header,
+  .CookieModal-tabs,
+  .CookieModal-footer { border-color: #2c313a; }
+
+  .CookieModal-tab.is-active { color: #e9ebef; }
+  .CookieSwitch { background: #3a4150; }
+}
+
+.CookieConsent--theme-dark { .acc-dark(); }
+
+@media (prefers-color-scheme: dark) {
+  .CookieConsent--theme-auto { .acc-dark(); }
+}
