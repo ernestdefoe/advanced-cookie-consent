@@ -1,0 +1,72 @@
+ernestdefoe-acc:
+  forum:
+    reopen: "Cookie settings"
+
+    banner:
+      aria: "Cookie consent"
+      title: "Cookie Notice"
+      message: "We and selected partners use cookies and similar technologies to improve your experience. Click \"Accept\" to consent, or choose which categories to allow."
+      privacy: "Privacy Notice"
+      more: "More information"
+      reject: "Reject"
+      customize: "Customize"
+      accept: "Accept"
+
+    settings:
+      title: "Privacy Settings"
+      close: "Close"
+      intro: "We use cookies and similar technologies. Some are essential; others help us improve the site or are set by third-party services. You can choose which categories to allow below."
+      tab_categories: "Categories"
+      tab_services: "Services"
+      save: "Save settings"
+      always_on: "Always active"
+      cookies: "Cookies"
+      no_services: "No third-party services are configured."
+
+    categories:
+      necessary:
+        name: "Necessary"
+        description: "Required for the site to function — security, sessions, your language and consent preferences. These cannot be turned off."
+      performance:
+        name: "Performance"
+        description: "Help us understand how the site is used (e.g. analytics) so we can improve it. All information is aggregated."
+      functional:
+        name: "Functional"
+        description: "Enable enhanced functionality and personalisation, such as remembering your choices and embedded content."
+      marketing:
+        name: "Marketing"
+        description: "Used to deliver relevant content and ads and to measure their effectiveness, sometimes by third parties."
+
+  admin:
+    settings:
+      enabled: "Enable the cookie consent banner"
+      position: "Banner position"
+      position_bottom: "Bottom bar"
+      position_box: "Corner box"
+      position_center: "Centered box"
+      show_reject_all: "Show a \"Reject\" button"
+      respect_dnt: "Respect Do Not Track / Global Privacy Control"
+      respect_dnt_help: "When a visitor's browser sends a DNT/GPC opt-out signal, auto-reject all non-essential categories without showing the banner."
+      version: "Consent version"
+      version_help: "Bump this whenever your cookie policy changes to re-prompt everyone for fresh consent."
+      title: "Banner title"
+      message: "Banner text"
+      privacy_url: "Privacy policy URL"
+      privacy_label: "Privacy link label"
+      blank_default: "Leave blank to use the default text."
+
+    config:
+      categories_title: "Consent categories"
+      categories_help: "The toggles visitors see. Necessary is always on. Paste any scripts (e.g. analytics tags) that should only load once a category is accepted."
+      add_category: "Add category"
+      category_name: "Name"
+      required: "Always active"
+      scripts_placeholder: "Scripts to load when this category is accepted (e.g. <script>…</script>)"
+      services_title: "Services (transparency)"
+      services_help: "Optionally list the third-party services in each category so visitors can see exactly what runs."
+      add_service: "Add service"
+      service_name: "Service name"
+      service_provider: "Provider"
+      service_cookies: "Cookies set (comma-separated)"
+      save: "Save categories & services"
+      saved: "Saved ✓"

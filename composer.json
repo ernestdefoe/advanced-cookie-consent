@@ -1,0 +1,47 @@
+{
+  "name": "ernestdefoe/advanced-cookie-consent",
+  "description": "Advanced Cookie Consent for Flarum 2 — a GDPR/ePrivacy-style cookie banner with granular, admin-defined consent categories, per-category script gating (third-party scripts load only after consent), a Categories/Services privacy-settings modal, consent versioning and a reopen-anytime control.",
+  "keywords": ["flarum", "flarum-extension", "cookie", "consent", "gdpr", "privacy"],
+  "type": "flarum-extension",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "ernestdefoe",
+      "email": "ernestdefoe@gmail.com"
+    }
+  ],
+  "homepage": "https://github.com/ernestdefoe/advanced-cookie-consent",
+  "support": {
+    "issues": "https://github.com/ernestdefoe/advanced-cookie-consent/issues",
+    "source": "https://github.com/ernestdefoe/advanced-cookie-consent"
+  },
+  "require": {
+    "php": "^8.3",
+    "flarum/core": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ErnestDefoe\\AdvancedCookieConsent\\": "src/"
+    }
+  },
+  "extra": {
+    "flarum-extension": {
+      "title": "Advanced Cookie Consent",
+      "category": "feature",
+      "icon": {
+        "name": "fas fa-cookie-bite",
+        "backgroundColor": "#2563eb",
+        "color": "#fff"
+      }
+    },
+    "flarum-cli": {
+      "modules": {
+        "js": true,
+        "css": true,
+        "locale": true
+      }
+    }
+  },
+  "minimum-stability": "beta",
+  "prefer-stable": true
+}
