@@ -1,6 +1,7 @@
 import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
 import IndexSidebar from 'flarum/forum/components/IndexSidebar';
+import IndexPage from 'flarum/forum/components/IndexPage';
 import LinkButton from 'flarum/common/components/LinkButton';
 import CookieConsentRoot, { openSettings } from './components/CookieConsentRoot';
 import { applyScripts, loadConsent, config, accepted, decideAll, onChange } from '../common/consent';
@@ -44,6 +45,10 @@ app.initializers.add('ernestdefoe/advanced-cookie-consent', () => {
   // A "Cookie settings" link so visitors can change their mind. Themes can add
   // their own trigger anywhere via window.cookieConsent.open().
   extend(IndexSidebar.prototype, 'items', function (items: any) {
+    // 🚨 The discussion list only. Flarum 2 reuses IndexSidebar for other
+    // pages (Messages subclasses it), which lay the list out as a row, and a
+    // box dropped in there pushes the whole page out of shape.
+    if (!app.current || !app.current.matches(IndexPage)) return;
     items.add(
       'cookieConsent',
       LinkButton.component({ icon: 'fas fa-cookie-bite', onclick: (e: Event) => { e.preventDefault(); openSettings(); }, href: '#' }, t('reopen')),
