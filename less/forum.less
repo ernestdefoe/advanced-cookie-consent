@@ -252,9 +252,29 @@
   --acc-accent: var(--primary-color, #2563eb);
 }
 
-.CookieConsent .Button--primary {
+/*
+ * 🚨 A solid accent needs its own text colour.
+ *
+ * This paints the primary buttons solid, but the text colour was left to the
+ * theme — and a theme whose primary buttons are SOFT (a pale tint with text in
+ * the brand colour, as Bespoke's "soft" style is) then drew brand-coloured text
+ * on a brand-coloured button. On ernestdefoe.online the Accept button was green
+ * on green: the one button the banner exists for, blank.
+ *
+ * The default accent is the theme's primary colour, so its text is the theme's
+ * own primary-button text colour; an accent chosen in the admin gets black or
+ * white worked out from it (--acc-accent-text, set in CookieConsentRoot).
+ * Three classes, so a theme's two-class button rule cannot take it back.
+ */
+.CookieConsent .Button.Button--primary {
   background-color: var(--acc-accent);
   border-color: var(--acc-accent);
+
+  &,
+  &:hover,
+  &:focus {
+    color: var(--acc-accent-text, var(--button-primary-color, #fff));
+  }
 }
 
 .CookieBanner--box,
