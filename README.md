@@ -47,6 +47,11 @@ php flarum cache:clear
 
 Then open **Admin → Advanced Cookie Consent** to set your text, categories and scripts.
 
+## Support
+
+- **Support forum:** [Advanced Cookie Consent on ernestdefoe.online](https://ernestdefoe.online/d/66)
+- **Bug reports:** [GitHub issues](https://github.com/ernestdefoe/advanced-cookie-consent/issues)
+
 ## License
 
 [MIT](LICENSE)
