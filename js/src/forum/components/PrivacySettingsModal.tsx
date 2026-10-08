@@ -1,16 +1,25 @@
 import app from 'flarum/forum/app';
-import Component from 'flarum/common/Component';
+import Component, { type ComponentAttrs } from 'flarum/common/Component';
 import type { CategoryDef, CookieConsentConfig, ServiceDef } from '../../common/consent';
 
 declare const m: any;
 const t = (k: string, p?: any): any => app.translator.trans('ernestdefoe-acc.forum.' + k, p);
+
+export interface PrivacySettingsModalAttrs extends ComponentAttrs {
+  config: CookieConsentConfig;
+  initial?: Record<string, boolean>;
+  onSave: (values: Record<string, boolean>) => void;
+  onRejectAll: () => void;
+  onAcceptAll: () => void;
+  onClose: () => void;
+}
 
 /**
  * Second-layer "Privacy Settings" dialog: a Categories tab with per-category
  * toggles and an expandable detail (the services + cookies it covers), and a
  * Services transparency tab. Footer offers Save / Reject all / Accept all.
  */
-export default class PrivacySettingsModal extends Component {
+export default class PrivacySettingsModal extends Component<PrivacySettingsModalAttrs> {
   tab: 'categories' | 'services' = 'categories';
   values: Record<string, boolean> = {};
   expanded: Record<string, boolean> = {};

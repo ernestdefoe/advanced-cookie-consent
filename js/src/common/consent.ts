@@ -186,5 +186,7 @@ function reinsert(node: HTMLScriptElement): void {
 /** Browser Do-Not-Track / Global Privacy Control signal. */
 export function dntEnabled(): boolean {
   const nav = navigator as any;
-  return nav.doNotTrack === '1' || nav.doNotTrack === 'yes' || window.doNotTrack === '1' || nav.globalPrivacyControl === true;
+  // window.doNotTrack is the legacy IE/Edge and old Safari spelling, absent from the DOM typings.
+  const win = window as Window & { doNotTrack?: string };
+  return nav.doNotTrack === '1' || nav.doNotTrack === 'yes' || win.doNotTrack === '1' || nav.globalPrivacyControl === true;
 }

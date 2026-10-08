@@ -1,15 +1,22 @@
 import app from 'flarum/forum/app';
-import Component from 'flarum/common/Component';
+import Component, { type ComponentAttrs } from 'flarum/common/Component';
 import type { CookieConsentConfig } from '../../common/consent';
 
 declare const m: any;
 const t = (k: string, p?: any): any => app.translator.trans('ernestdefoe-acc.forum.' + k, p);
 
+export interface CookieBannerAttrs extends ComponentAttrs {
+  config: CookieConsentConfig;
+  onAccept: () => void;
+  onReject: () => void;
+  onCustomize: () => void;
+}
+
 /**
  * The first-layer cookie notice. Presentational: the mounted root passes the
  * config + the accept / reject / customize callbacks.
  */
-export default class CookieBanner extends Component {
+export default class CookieBanner extends Component<CookieBannerAttrs> {
   view() {
     const cfg: CookieConsentConfig = this.attrs.config;
     const onAccept = this.attrs.onAccept;
