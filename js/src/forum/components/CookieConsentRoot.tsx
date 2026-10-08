@@ -125,7 +125,13 @@ export default class CookieConsentRoot extends Component {
  */
 function textOn(color: string): string | null {
   const hex = String(color).trim().replace(/^#/, '');
-  const full = hex.length === 3 ? hex.split('').map((c) => c + c).join('') : hex;
+  const full =
+    hex.length === 3
+      ? hex
+          .split('')
+          .map((c) => c + c)
+          .join('')
+      : hex;
   if (!/^[0-9a-f]{6}$/i.test(full)) return null;
 
   const [r, g, b] = [0, 2, 4].map((i) => {

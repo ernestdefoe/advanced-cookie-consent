@@ -110,9 +110,7 @@ export function saveConsent(categories: Record<string, boolean>): void {
 
   // A revoked category means scripts may already be running — the only safe way
   // to truly stop them is a reload. Newly-granted categories can activate live.
-  const revoked = previous
-    ? Object.keys(previous.categories).some((k) => previous.categories[k] && !categories[k])
-    : false;
+  const revoked = previous ? Object.keys(previous.categories).some((k) => previous.categories[k] && !categories[k]) : false;
 
   if (revoked) {
     window.location.reload();
@@ -160,9 +158,7 @@ export function applyScripts(consent: StoredConsent): void {
 
     // (2) activate placeholder scripts for this category.
     document
-      .querySelectorAll<HTMLScriptElement>(
-        `script[type="text/plain"][data-cc-category="${cat.key}"]:not([data-acc-active])`
-      )
+      .querySelectorAll<HTMLScriptElement>(`script[type="text/plain"][data-cc-category="${cat.key}"]:not([data-acc-active])`)
       .forEach((placeholder) => {
         placeholder.setAttribute('data-acc-active', '1');
         reinsert(placeholder);

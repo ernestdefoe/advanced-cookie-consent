@@ -10,7 +10,11 @@ const t = (k: string, p?: any): any => app.translator.trans('ernestdefoe-acc.adm
 const DEFAULT_KEYS = ['necessary', 'performance', 'functional', 'marketing'];
 
 function slug(s: string): string {
-  return (s || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return (s || '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }
 
 /** Edits the cookie categories + services, persisting them as JSON settings. */
@@ -22,7 +26,10 @@ export default class ConfigManager extends Component {
 
   oninit(vnode: any) {
     super.oninit(vnode);
-    this.categories = this.parse('ernestdefoe-acc.categories', DEFAULT_KEYS.map((key) => ({ key, required: key === 'necessary', scripts: '' })));
+    this.categories = this.parse(
+      'ernestdefoe-acc.categories',
+      DEFAULT_KEYS.map((key) => ({ key, required: key === 'necessary', scripts: '' }))
+    );
     this.services = this.parse('ernestdefoe-acc.services', []);
   }
 
@@ -39,18 +46,27 @@ export default class ConfigManager extends Component {
     return m('.AccConfig', [
       m('h3', t('config.categories_title')),
       m('p.helpText', t('config.categories_help')),
-      m('.AccConfig-list', this.categories.map((c, i) => this.categoryRow(c, i))),
+      m(
+        '.AccConfig-list',
+        this.categories.map((c, i) => this.categoryRow(c, i))
+      ),
       Button.component({ className: 'Button Button--icon', icon: 'fas fa-plus', onclick: () => this.addCategory() }, t('config.add_category')),
 
       m('h3', { style: 'margin-top:26px;' }, t('config.services_title')),
       m('p.helpText', t('config.services_help')),
-      m('.AccConfig-list', this.services.map((s, i) => this.serviceRow(s, i))),
+      m(
+        '.AccConfig-list',
+        this.services.map((s, i) => this.serviceRow(s, i))
+      ),
       Button.component({ className: 'Button Button--icon', icon: 'fas fa-plus', onclick: () => this.addService() }, t('config.add_service')),
 
-      m('.AccConfig-save', Button.component(
-        { className: 'Button Button--primary', loading: this.saving, onclick: () => this.save() },
-        this.saved ? t('config.saved') : t('config.save')
-      )),
+      m(
+        '.AccConfig-save',
+        Button.component(
+          { className: 'Button Button--primary', loading: this.saving, onclick: () => this.save() },
+          this.saved ? t('config.saved') : t('config.save')
+        )
+      ),
     ]);
   }
 
@@ -66,7 +82,9 @@ export default class ConfigManager extends Component {
         m('label.AccConfig-required', [
           m(Switch, { state: !!c.required, disabled: c.key === 'necessary', onchange: (v: boolean) => (c.required = v) }, t('config.required')),
         ]),
-        !isDefault ? Button.component({ className: 'Button Button--icon Button--text', icon: 'fas fa-trash', onclick: () => this.categories.splice(i, 1) }) : null,
+        !isDefault
+          ? Button.component({ className: 'Button Button--icon Button--text', icon: 'fas fa-trash', onclick: () => this.categories.splice(i, 1) })
+          : null,
       ]),
       m('textarea.FormControl.AccConfig-scripts', {
         rows: 2,
@@ -81,9 +99,16 @@ export default class ConfigManager extends Component {
     return m('.AccConfig-item', [
       m('.AccConfig-itemHead', [
         m('input.FormControl', { placeholder: t('config.service_name'), value: s.name || '', oninput: (e: any) => (s.name = e.target.value) }),
-        m('input.FormControl', { placeholder: t('config.service_provider'), value: s.provider || '', oninput: (e: any) => (s.provider = e.target.value) }),
-        m('select.FormControl', { value: s.category || '', onchange: (e: any) => (s.category = e.target.value) },
-          this.categories.map((c) => m('option', { value: c.key }, c.name || c.key))),
+        m('input.FormControl', {
+          placeholder: t('config.service_provider'),
+          value: s.provider || '',
+          oninput: (e: any) => (s.provider = e.target.value),
+        }),
+        m(
+          'select.FormControl',
+          { value: s.category || '', onchange: (e: any) => (s.category = e.target.value) },
+          this.categories.map((c) => m('option', { value: c.key }, c.name || c.key))
+        ),
         Button.component({ className: 'Button Button--icon Button--text', icon: 'fas fa-trash', onclick: () => this.services.splice(i, 1) }),
       ]),
       m('input.FormControl', { placeholder: t('config.service_cookies'), value: s.cookies || '', oninput: (e: any) => (s.cookies = e.target.value) }),
@@ -124,7 +149,10 @@ export default class ConfigManager extends Component {
         this.saving = false;
         this.saved = true;
         m.redraw();
-        setTimeout(() => { this.saved = false; m.redraw(); }, 2500);
+        setTimeout(() => {
+          this.saved = false;
+          m.redraw();
+        }, 2500);
       })
       .catch(() => {
         this.saving = false;

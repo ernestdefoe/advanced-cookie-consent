@@ -51,7 +51,17 @@ app.initializers.add('ernestdefoe/advanced-cookie-consent', () => {
     if (!app.current || !app.current.matches(IndexPage)) return;
     items.add(
       'cookieConsent',
-      LinkButton.component({ icon: 'fas fa-cookie-bite', onclick: (e: Event) => { e.preventDefault(); openSettings(); }, href: '#' }, t('reopen')),
+      LinkButton.component(
+        {
+          icon: 'fas fa-cookie-bite',
+          onclick: (e: Event) => {
+            e.preventDefault();
+            openSettings();
+          },
+          href: '#',
+        },
+        t('reopen')
+      ),
       -100
     );
   });

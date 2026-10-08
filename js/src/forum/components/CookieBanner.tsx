@@ -36,9 +36,7 @@ export default class CookieBanner extends Component<CookieBannerAttrs> {
           ]),
         ]),
         m('.CookieBanner-actions', [
-          cfg.showRejectAll
-            ? m('button.Button.CookieBanner-reject', { type: 'button', onclick: onReject }, t('banner.reject'))
-            : null,
+          cfg.showRejectAll ? m('button.Button.CookieBanner-reject', { type: 'button', onclick: onReject }, t('banner.reject')) : null,
           m('button.Button.CookieBanner-customize', { type: 'button', onclick: onCustomize }, t('banner.customize')),
           m('button.Button.Button--primary.CookieBanner-accept', { type: 'button', onclick: onAccept }, t('banner.accept')),
         ]),
