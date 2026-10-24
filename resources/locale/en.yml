@@ -67,11 +67,12 @@ ernestdefoe-acc:
 
     config:
       categories_title: "Consent categories"
-      categories_help: "The toggles visitors see. Necessary is always on. Paste any scripts (e.g. analytics tags) that should only load once a category is accepted."
+      categories_help: "The toggles visitors see. Necessary is always on. Paste any scripts (e.g. analytics tags) that should only load once a category is accepted, and optionally scripts that clean up (e.g. delete cookies) when it is rejected or revoked."
       add_category: "Add category"
       category_name: "Name"
       required: "Always active"
       scripts_placeholder: "Scripts to load when this category is accepted (e.g. <script>…</script>)"
+      reject_scripts_placeholder: "Scripts to run on each page load while this category is rejected or revoked, e.g. to delete its cookies (optional)"
       services_title: "Services (transparency)"
       services_help: "Optionally list the third-party services in each category so visitors can see exactly what runs."
       add_service: "Add service"

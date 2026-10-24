@@ -92,6 +92,14 @@ export default class ConfigManager extends Component {
         value: c.scripts || '',
         oninput: (e: any) => (c.scripts = e.target.value),
       }),
+      c.required
+        ? null
+        : m('textarea.FormControl.AccConfig-scripts', {
+            rows: 2,
+            placeholder: t('config.reject_scripts_placeholder'),
+            value: c.rejectScripts || '',
+            oninput: (e: any) => (c.rejectScripts = e.target.value),
+          }),
     ]);
   }
 

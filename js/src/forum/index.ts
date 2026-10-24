@@ -4,7 +4,7 @@ import IndexSidebar from 'flarum/forum/components/IndexSidebar';
 import IndexPage from 'flarum/forum/components/IndexPage';
 import LinkButton from 'flarum/common/components/LinkButton';
 import CookieConsentRoot, { openSettings } from './components/CookieConsentRoot';
-import { applyScripts, loadConsent, config, accepted, decideAll, onChange } from '../common/consent';
+import { applyScripts, loadConsent, config, accepted, decideAll, onChange, on, getConsent, READY_EVENT } from '../common/consent';
 
 declare const m: any;
 const t = (k: string, p?: any): any => app.translator.trans('ernestdefoe-acc.forum.' + k, p);
@@ -19,6 +19,8 @@ app.initializers.add('ernestdefoe/advanced-cookie-consent', () => {
     rejectAll: () => decideAll(false),
     config,
     onChange,
+    on,
+    get: getConsent,
     consent: () => loadConsent(),
   };
 
@@ -31,6 +33,10 @@ app.initializers.add('ernestdefoe/advanced-cookie-consent', () => {
     // Run any already-granted gated scripts as early as possible.
     const existing = loadConsent();
     if (existing) applyScripts(existing);
+
+    // Announce the state on every page load, so site code can act on a decision
+    // made earlier (e.g. clear cookies of a category that stays rejected).
+    window.dispatchEvent(new CustomEvent(READY_EVENT, { detail: { categories: getConsent() } }));
 
     // Mount the banner/dialog on its own node, outside Flarum's #app container,
     // so it overlays everything and works for guests. Flarum Component classes
