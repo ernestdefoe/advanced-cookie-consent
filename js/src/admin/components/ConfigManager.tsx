@@ -136,7 +136,8 @@ export default class ConfigManager extends Component {
     const seen: Record<string, boolean> = {};
     this.categories.forEach((c) => {
       if (!c.key) c.key = slug(c.name || '') || 'category';
-      while (seen[c.key]) c.key += '-2';
+      const base = c.key;
+      for (let n = 2; seen[c.key]; n++) c.key = `${base}-${n}`;
       seen[c.key] = true;
     });
 
@@ -163,6 +164,8 @@ export default class ConfigManager extends Component {
         }, 2500);
       })
       .catch(() => {
+        // app.request() has already shown core's error alert (network, 403,
+        // 422...) before this rejection arrives; only the button state is ours.
         this.saving = false;
         m.redraw();
       });

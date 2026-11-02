@@ -9,7 +9,7 @@ Shows a clean cookie notice with **Accept / Reject / Customize**, and a granular
 - **Cookie notice banner** (bottom bar, corner box, or centered) with Accept, Reject and Customize, plus your Privacy Notice link.
 - **Granular Privacy Settings modal** — per-category toggles (Necessary is always on) with expandable detail, plus a **Services** tab listing the third-party services and cookies in each category.
 - **Script gating** — two ways to ensure tags only run after consent:
-  - Paste scripts per category in the admin panel; they load when that category is accepted.
+  - Paste scripts per category in the admin panel; they load when that category is accepted. They are part of the page every visitor downloads (consent is stored in the visitor's browser), so tracking IDs are fine but never paste a private key or secret.
   - Mark any script on the page as `<script type="text/plain" data-cc-category="marketing">…</script>` and it activates on consent.
 - **Clean up on reject / revoke** — optional per-category scripts that run on every page load while a category is declined (e.g. to delete its cookies), plus browser events and a JS API for your own code.
 - **Admin-defined categories** (rename, add, remove, mark required) — defaults: Necessary, Performance, Functional, Marketing.

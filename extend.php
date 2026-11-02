@@ -48,7 +48,11 @@ return [
         ->serializeToForum('cookieConsent.message', 'ernestdefoe-acc.message', fn ($v) => $v ?: null)
         ->serializeToForum('cookieConsent.privacyUrl', 'ernestdefoe-acc.privacy_url', fn ($v) => $v ?: null)
         ->serializeToForum('cookieConsent.privacyLabel', 'ernestdefoe-acc.privacy_label', fn ($v) => $v ?: null)
-        // Structured config.
+        // Structured config. Category scripts ship to every visitor on purpose:
+        // consent lives in the visitor's browser, so any visitor can grant it
+        // and load them anyway; a "consent-gated" endpoint could not verify
+        // anything. Tracking IDs in tags are public by design; never paste a
+        // secret into a category script (the README says so too).
         ->serializeToForum('cookieConsent.categories', 'ernestdefoe-acc.categories', $json(Defaults::categories()))
         ->serializeToForum('cookieConsent.services', 'ernestdefoe-acc.services', $json(Defaults::services())),
 ];

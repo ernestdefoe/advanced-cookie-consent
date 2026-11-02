@@ -24,10 +24,20 @@ app.initializers.add('ernestdefoe/advanced-cookie-consent', () => {
     consent: () => loadConsent(),
   };
 
-  // Config reads app.forum.attribute(), which is NOT populated yet while
-  // initializers run — defer the config-dependent work to the next tick, by
-  // which the forum payload is loaded.
-  setTimeout(() => {
+  // Config reads app.forum.attribute(), which core only sets AFTER the
+  // initializers have run (Application.boot: initialize() → pushPayload →
+  // this.forum = …). beforeMount callbacks run right after that, before the
+  // page mounts. Core doesn't guard them, so a throw here is caught locally
+  // rather than taking the whole forum down with it.
+  app.beforeMount(() => {
+    try {
+      boot();
+    } catch (e) {
+      console.error('[advanced-cookie-consent]', e);
+    }
+  });
+
+  function boot() {
     if (!config().enabled) return;
 
     // Run any already-granted gated scripts as early as possible.
@@ -46,7 +56,7 @@ app.initializers.add('ernestdefoe/advanced-cookie-consent', () => {
     node.id = 'acc-root';
     document.body.appendChild(node);
     m.mount(node, { view: () => m(CookieConsentRoot) });
-  }, 0);
+  }
 
   // A "Cookie settings" link so visitors can change their mind. Themes can add
   // their own trigger anywhere via window.cookieConsent.open().
